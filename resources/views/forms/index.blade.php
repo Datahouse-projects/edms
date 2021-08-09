@@ -1,32 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Form</title>
-
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@extends('layouts.app')
 
 
-</head>
-<body>
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Create New Role</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+        </div>
+    </div>
+</div>
 
-    <div>
-        @if (session('status'))
-       <div class="alert alert-success">
-        {{ session('status') }}
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
     </div>
 @endif
-    </div>
-
-<div class="container mt-4">
-
-  <h2 class="text-center">Form</h2>
-
-  @section('content')
 <div class="col-md-8">
     <div class="card">
-        <div class="card-header">{{ __('messages.forms') }} <span class="pull-right"> <a class="btn btn-secondary btn-sm"  href="/forms/create?form_id={{ request('form_id')}}">{{ __('messages.add') }}</a></span></div>
+        <div class="card-header">Forms <span class="pull-right"> <a class="btn btn-secondary btn-sm"  href="/forms/create?form_id={{ request('form_id')}}">Add New</a></span></div>
 
         <div class="card-body">
             @if (session('status'))
@@ -44,10 +44,11 @@
                   <thead>
                     <tr>
 
-                      <th scope="col">{{ __('messages.name') }}</th>
-                      <th scope="col">{{ __('messages.show') }}</th>
-                      <th scope="col">{{ __('messages.edit') }}</th>
-                      <th scope="col">{{ __('messages.delete') }}</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Show</th>
+                      <th scope="col">New Field</th>
+                      <th scope="col">Edit</th>
+                      <th scope="col">Delete</th>
 
                     </tr>
                   </thead>
@@ -62,6 +63,9 @@
 
 
                    <td><a class="btn btn-info" href="{{ route('forms.show',$form->id) }}">Show</a></td>
+
+                   {{-- <td><a class="btn btn-info" href="{{ route('fields.create',$form->id) }}">New Field</a></td> --}}
+                    <td><a class="btn btn-info" href="/fields/create?form_id={{ $form->id }}"> New Field</a></td>
 
                    <td><a href="/forms/{{$form->id}}/edit" class="btn btn-primary">Edit</a></td>
 
@@ -104,7 +108,7 @@
 
         {{ __('messages.no kin defined')}}
 
-          <a class="pull-right" href="/forms/create?employee_id={{ request('employee_id') }}">{{ __('messages.add')}}</a>
+          <a class="pull-right" href="/forms/create?employee_id={{ request('employee_id') }}">Add</a>
 
 
         @endif
@@ -115,8 +119,4 @@
 </div>
 
 
-</div>
-
-</div>
-</body>
-</html>
+@endsection

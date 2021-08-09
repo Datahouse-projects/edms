@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Field;
+use App\Form;
 use Illuminate\Http\Request;
 
 class FieldController extends Controller
@@ -14,7 +15,8 @@ class FieldController extends Controller
      */
     public function index()
     {
-        //
+        $forms = Field::all();
+        return view('fields.index',compact('forms'));
     }
 
     /**
@@ -22,9 +24,12 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $form_id = $request->input('form_id');
+
+
+        return view('fields.create',compact('form_id'));
     }
 
     /**
@@ -38,6 +43,7 @@ class FieldController extends Controller
         $validatedData = $request->validate([
 
                         'form_id' => 'required',
+                        'name' => 'required',
                         'label' => 'required',
                         'input_type' => 'required',
                         'variable_name' => 'required',
@@ -47,17 +53,24 @@ class FieldController extends Controller
         ]);
 
 
-
         $form_id = $request->input('form_id');
-        $label = strtolower($request->input('label'));
-        $input_type = strtolower($request->input('label'));
-        $variable_name = strtolower($request->input('label'));
-        $variable_type = strtolower($request->input('label'));
+        $name = strtolower($request->input('name'));
+        $label = ucfirst($request->input('label'));
+        $input_type = strtolower($request->input('input_type'));
+        $variable_name = strtolower($request->input('variable_name'));
+        $variable_type = strtolower($request->input('variable_type'));
+        $variable_length = $request->input('variable_length');
 
 
         $field = new Field;
 
         $field->form_id = $form_id;
+        $field->name = $name;
+        $field->label = $label;
+        $field->input_type = $input_type;
+        $field->variable_name = $variable_name;
+        $field->variable_type = $variable_type;
+        $field->variable_length = $variable_length;
 
         $field->save();
 

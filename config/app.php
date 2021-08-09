@@ -182,6 +182,11 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
 
 
+        //Authorization roles based
+        Spatie\Permission\PermissionServiceProvider::class,
+	    Collective\Html\HtmlServiceProvider::class,
+
+
     ],
 
     /*
@@ -237,6 +242,10 @@ return [
 
         //PDF
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //Athorization roles based
+        'Form' => Collective\Html\FormFacade::class,
+	    'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

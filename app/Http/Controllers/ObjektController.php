@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Meta;
+use App\Models\Objekt;
 use Illuminate\Http\Request;
 
-class MetaController extends Controller
+class ObjektController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MetaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Meta  $meta
+     * @param  \App\Models\Objekt  $objekt
      * @return \Illuminate\Http\Response
      */
-    public function show(Meta $meta)
+    public function show(Objekt $objekt)
     {
         //
     }
@@ -52,10 +52,10 @@ class MetaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Meta  $meta
+     * @param  \App\Models\Objekt  $objekt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Meta $meta)
+    public function edit(Objekt $objekt)
     {
         //
     }
@@ -64,10 +64,10 @@ class MetaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Meta  $meta
+     * @param  \App\Models\Objekt  $objekt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Meta $meta)
+    public function update(Request $request, Objekt $objekt)
     {
         //
     }
@@ -75,10 +75,10 @@ class MetaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Meta  $meta
+     * @param  \App\Models\Objekt  $objekt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meta $meta)
+    public function destroy(Objekt $objekt)
     {
         //
     }

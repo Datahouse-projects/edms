@@ -1,17 +1,28 @@
-<html>
-<head>
-  <title>Laravel 8 File Upload Example - Tutsmake.com</title>
-
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@extends('layouts.app')
 
 
-</head>
-<body>
+@section('content')
 
-<div class="container mt-4">
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Create New Document</h2>
+        </div>
 
+    </div>
+</div>
+
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+@endif
 
 
       <form method="POST"  action="{{ url('keywords') }}" >
@@ -60,8 +71,4 @@
 
           </div>
       </form>
-</div>
-
-</div>
-</body>
-</html>
+@endsection

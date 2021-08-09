@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Form</title>
-
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@extends('layouts.app')
 
 
-</head>
-<body>
+@section('content')
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Create New Role</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+        </div>
+    </div>
+</div>
 
-    <div>
-        @if (session('status'))
-       <div class="alert alert-success">
-        {{ session('status') }}
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
     </div>
 @endif
-    </div>
-
-<div class="container mt-4">
-
-  <h2 class="text-center">Form</h2>
-
-  @section('content')
 <div class="col-md-8">
     <div class="card">
         <div class="card-header">{{ __('messages.forms') }} <span class="pull-right"> <a class="btn btn-secondary btn-sm"  href="/forms/create?form_id={{ request('form_id')}}">{{ __('messages.add') }}</a></span></div>
@@ -115,8 +115,4 @@
 </div>
 
 
-</div>
-
-</div>
-</body>
-</html>
+@endsection
